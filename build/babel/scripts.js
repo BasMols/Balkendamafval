@@ -2,27 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", function (event) {
 
-    function ajax(url) {
-
-        return new Promise(function (resolve, reject) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.addEventListener("load", function () {
-                if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                    if (xmlhttp.responseText === '{}') {
-                        reject(new Error("Empty object"));
-                    } else {
-                        resolve(JSON.parse(xmlhttp.responseText));
-                    }
-                } else if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
-                    reject(new Error("something went wrong"));
-                }
-            });
-
-            xmlhttp.open("GET", url, true);
-            xmlhttp.send();
-        });
-    }
-
     var target = document.getElementById('opening');
     target.innerHTML = "<img src='img/ajax-loader.gif'>";
     var p = ajax("http://www.dennisvanriet.nl/gemeentebalkendam/index.php?data=openingstijden");
@@ -40,12 +19,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
     });
 
     //FUNCTIE 2
-
     document.getElementById("myBtn").addEventListener("click", function () {
         var input = document.getElementById('input');
+        // const str = input.value;
+        // const res = str.toUpperCase();
         var target2 = document.getElementById('target');
+
         target2.innerHTML = "<img src='img/ajax-loader.gif'>";
-        var v = ajax("http://www.dennisvanriet.nl/gemeentebalkendam/index.php?data=afvalkalender&postcode=" + input.value);
+        var v = ajax("http://www.dennisvanriet.nl/gemeentebalkendam/index.php?data=afvalkalender&postcode=" + input.value.toUpperCase());
+
         v.then(function (zip) {
             target2.innerHTML = zip.verwerk;
         }, function (err) {
