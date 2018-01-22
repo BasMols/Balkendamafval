@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../dev/js/ajax.js"],"names":["ajax","call","console","log"],"mappings":";;;;;QAAgBA,I,GAAAA,I;AAAT,SAASA,IAAT,CAAcC,IAAd,EAAmB;AACtBC,YAAQC,GAAR,CAAYF,IAAZ;AACH","file":"ajax.js","sourcesContent":["export function ajax(call){\r\n    console.log(call);\r\n};"]}
